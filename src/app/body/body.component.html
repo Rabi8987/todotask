@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card>
+    <h4>My todo list</h4>
+      <div class="row">
+        <mat-form-field class="">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="add(value)">Add</button>
+      </div>
+  </mat-card>
+
+  <mat-card>
+    <table>
+      <tr *ngFor="let todo of todoActivity">
+        <td>{{todo.id}}</td>
+        <td>{{todo.task}}</td>
+        <td>{{todo.status ? '&#10003;' : '&#10005;'}}</td>
+        <td><a mat-raised-button [routerLink] = "['edit-todo/'+todo.id]" color="primary">edit</a></td>
+        <td><button mat-raised-button (click)="delete(todo.id)" color="primary">delete</button></td>
+        <td><button mat-raised-button (click)="toggletask(todo.id)" color="primary">toggle</button></td>
+      </tr>
+    </table>
+  </mat-card>
+</div>
